@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo des Villes</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Météo des Villes</h1>
+        <div class="weather-form">
+            <div class="input-group">
+                <label for="latitude">Latitude:</label>
+                <input type="number" id="latitude" step="any" placeholder="Ex: 46.2">
+            </div>
+            <div class="input-group">
+                <label for="longitude">Longitude:</label>
+                <input type="number" id="longitude" step="any" placeholder="Ex: 6.15">
+            </div>
+            <button id="getWeather">Obtenir la température</button>
+            <div id="result" class="weather-result">
+                <div id="temperature"></div>
+                <div id="loading" style="display: none;">Chargement...</div>
+            </div>
+        </div>
+    </div>
+    <script src="src/main.js"></script>
+</body>
+</html>
