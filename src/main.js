@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             loadingDiv.style.display = 'none';
-            temperatureDiv.textContent = `Température à ${selectedCity}: ${data.current_weather.temperature}°C`;
+            temperatureDiv.textContent = `Température: ${data.current_weather.temperature}°C`;
         } catch (error) {
             loadingDiv.style.display = 'none';
             temperatureDiv.textContent = 'Erreur lors du chargement des données météo';
