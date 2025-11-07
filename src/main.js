@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const getWeatherButton = document.getElementById('getWeather');
     const temperatureDiv = document.getElementById('temperature');
     const loadingDiv = document.getElementById('loading');
+    const historyBody = document.getElementById('historyBody');
 
     getWeatherButton.addEventListener('click', async function() {
         const latitude = latitudeInput.value;
@@ -22,7 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             loadingDiv.style.display = 'none';
-            temperatureDiv.textContent = `Température: ${data.current_weather.temperature}°C`;
+            const temperature = data.current_weather.temperature;
+            temperatureDiv.textContent = `Température: ${temperature}°C`;
+            
+            // Ajouter une nouvelle ligne au tableau
+            const newRow = historyBody.insertRow(0); // Insérer au début
+            const tempCell = newRow.insertCell(0);
+            const coordCell = newRow.insertCell(1);
+            
+            tempCell.textContent = temperature + '°C';
+            coordCell.textContent = `${latitude}, ${longitude}`;
+            
         } catch (error) {
             loadingDiv.style.display = 'none';
             temperatureDiv.textContent = 'Erreur lors du chargement des données météo';

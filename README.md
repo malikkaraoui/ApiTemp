@@ -7,6 +7,7 @@ Une application web simple permettant de consulter la température actuelle pour
 - Interface utilisateur intuitive
 - Saisie de latitude et longitude
 - Affichage de la température en temps réel
+- Tableau d'historique des recherches avec température et coordonnées GPS
 - Utilisation de l'API Open-Meteo
 
 ## Technologies utilisées
@@ -43,6 +44,7 @@ npm start
 2. Entrez une longitude (ex: 6.15 pour Genève)
 3. Cliquez sur "Obtenir la température"
 4. La température actuelle s'affichera pour les coordonnées données
+5. Un historique de vos recherches apparaîtra dans le tableau en dessous avec la température et les coordonnées GPS
 
 ## API utilisée
 
