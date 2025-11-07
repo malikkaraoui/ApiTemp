@@ -22,12 +22,26 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingDiv.classList.add('show');
             temperatureDiv.textContent = '';
 
-            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
-            const data = await response.json();
+            // Appel parallèle aux deux APIs
+            const [weatherResponse, locationData] = await Promise.all([
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`),
+                window.getLocationName(latitude, longitude)
+            ]);
+
+            const weatherData = await weatherResponse.json();
 
             loadingDiv.classList.remove('show');
-            const temperature = data.current_weather.temperature;
-            temperatureDiv.textContent = `🌡️ ${temperature}°C`;
+            const temperature = weatherData.current_weather.temperature;
+            
+            // Afficher la température avec la ville et le pays
+            const locationText = locationData.city !== 'Inconnu' 
+                ? `${locationData.city}, ${locationData.country}` 
+                : locationData.country;
+            
+            temperatureDiv.innerHTML = `
+                <div style="margin-bottom: 0.5rem;">🌡️ ${temperature}°C</div>
+                <div style="font-size: 1.2rem; color: #94a3b8;">📍 ${locationText}</div>
+            `;
             temperatureDiv.className = 'success';
             
             // Masquer l'état vide et afficher le tableau
@@ -45,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const coordCell = newRow.insertCell(1);
             
             tempCell.textContent = `${temperature}°C`;
-            coordCell.textContent = `${latitude}, ${longitude}`;
+            coordCell.textContent = `${locationText} (${latitude}, ${longitude})`;
             
         } catch (error) {
             loadingDiv.classList.remove('show');

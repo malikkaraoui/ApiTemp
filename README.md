@@ -4,11 +4,13 @@ Une application web simple permettant de consulter la température actuelle pour
 
 ## Fonctionnalités
 
-- Interface utilisateur intuitive
+- Interface utilisateur intuitive et futuriste
 - Saisie de latitude et longitude
 - Affichage de la température en temps réel
-- Tableau d'historique des recherches avec température et coordonnées GPS
-- Utilisation de l'API Open-Meteo
+- **Géolocalisation inversée** : affichage automatique de la ville et du pays
+- Tableau d'historique des recherches avec température, localisation et coordonnées GPS
+- Utilisation de l'API Open-Meteo pour la météo
+- Utilisation de l'API BigDataCloud pour le géocodage inversé
 
 ## Technologies utilisées
 
@@ -43,9 +45,11 @@ npm start
 1. Entrez une latitude (ex: 46.2 pour Genève)
 2. Entrez une longitude (ex: 6.15 pour Genève)
 3. Cliquez sur "Obtenir la température"
-4. La température actuelle s'affichera pour les coordonnées données
-5. Un historique de vos recherches apparaîtra dans le tableau en dessous avec la température et les coordonnées GPS
+4. La température actuelle s'affichera avec le nom de la ville et du pays
+5. Un historique de vos recherches apparaîtra dans le tableau avec la température, la localisation et les coordonnées GPS
 
-## API utilisée
+## API utilisées
 
-Cette application utilise l'API gratuite [Open-Meteo](https://api.open-meteo.com/v1/forecast) pour obtenir les données météorologiques.
+Cette application utilise deux APIs gratuites :
+- **[Open-Meteo](https://api.open-meteo.com/v1/forecast)** pour obtenir les données météorologiques en temps réel
+- **[BigDataCloud](https://api.bigdatacloud.net/data/reverse-geocode-client)** pour le géocodage inversé (conversion des coordonnées en noms de lieux)
