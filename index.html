@@ -3,43 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Météo des Villes</title>
+    <title>Météo API - Application Futuriste</title>
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Météo des Villes</h1>
-        <div class="weather-form">
-            <div class="input-group">
-                <label for="latitude">Latitude:</label>
-                <input type="number" id="latitude" step="any" placeholder="Ex: 46.2">
+        <!-- En-tête -->
+        <div class="header">
+            <h1>Weather API Monitor</h1>
+            <p>Surveillance météorologique en temps réel</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Panneau de recherche -->
+            <div class="panel">
+                <h2 class="panel-title cyan">
+                    <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Coordonnées GPS
+                </h2>
+                
+                <form id="weatherForm">
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="number" id="latitude" step="any" placeholder="Ex: 46.2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="number" id="longitude" step="any" placeholder="Ex: 6.15">
+                    </div>
+                    
+                    <button type="button" id="getWeather" class="btn-primary">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                        </svg>
+                        Obtenir la température
+                    </button>
+                </form>
+
+                <div id="result">
+                    <div id="loading">
+                        <div class="spinner"></div>
+                        Chargement...
+                    </div>
+                    <div id="temperature"></div>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="longitude">Longitude:</label>
-                <input type="number" id="longitude" step="any" placeholder="Ex: 6.15">
-            </div>
-            <button id="getWeather">Obtenir la température</button>
-            <div id="result" class="weather-result">
-                <div id="temperature"></div>
-                <div id="loading" style="display: none;">Chargement...</div>
+
+            <!-- Panneau d'historique -->
+            <div class="panel">
+                <h2 class="panel-title purple">
+                    <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Historique des recherches
+                </h2>
+                
+                <div class="table-container" id="tableContainer" style="display: none;">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Température</th>
+                                <th>Coordonnées GPS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="emptyState">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                    <p>Aucune recherche effectuée</p>
+                </div>
             </div>
         </div>
-        
-        <div class="history-container">
-            <h2>Historique des recherches</h2>
-            <table id="historyTable">
-                <thead>
-                    <tr>
-                        <th>Température (°C)</th>
-                        <th>Coordonnées GPS</th>
-                    </tr>
-                </thead>
-                <tbody id="historyBody">
-                </tbody>
-            </table>
-        </div>
     </div>
-    </div>
+
     <script src="src/main.js"></script>
 </body>
 </html>
