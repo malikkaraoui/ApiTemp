@@ -61,6 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
             tempCell.textContent = `${temperature}°C`;
             coordCell.textContent = `${locationText} (${latitude}, ${longitude})`;
             
+            // Limiter l'historique à 6 entrées maximum
+            while (historyBody.rows.length > 6) {
+                historyBody.deleteRow(historyBody.rows.length - 1);
+            }
+            
         } catch (error) {
             loadingDiv.classList.remove('show');
             temperatureDiv.textContent = '❌ Erreur lors du chargement des données météo';
